@@ -17,12 +17,18 @@ rm -rf "$DEVSTATION"
 mkdir -p \
   "$DEVSTATION/logs" \
   "$DEVSTATION/configs" \
+  "$DEVSTATION/system" \
+  "$DEVSTATION/captures" \
   "$DEVSTATION/scripts" \
   "$DEVSTATION/data" \
   "$DEVSTATION/scenarios/01-permission-denied" \
   "$DEVSTATION/scenarios/02-disk-space" \
   "$DEVSTATION/scenarios/03-service-down" \
-  "$DEVSTATION/scenarios/04-ssh-locked"
+  "$DEVSTATION/scenarios/04-ssh-locked" \
+  "$DEVSTATION/scenarios/05-dns-failure" \
+  "$DEVSTATION/scenarios/06-out-of-memory" \
+  "$DEVSTATION/scenarios/07-fstab-broken" \
+  "$DEVSTATION/scenarios/08-root-recovery"
 
 # ─── LOGS ────────────────────────────────────────────────────────────────────
 
@@ -175,6 +181,142 @@ cat > "$DEVSTATION/configs/hosts.example" << 'EOF'
 # Block known ad domains by pointing to localhost (example)
 0.0.0.0     ads.example.com
 0.0.0.0     tracker.example.com
+EOF
+
+cat > "$DEVSTATION/configs/netplan.yaml" << 'EOF'
+# Example netplan config — study the format, do NOT apply this on your machine.
+# Real path on Ubuntu: /etc/netplan/01-netcfg.yaml  (apply with: sudo netplan apply)
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    eth0:
+      dhcp4: false
+      addresses:
+        - 192.168.1.50/24
+      routes:
+        - to: default
+          via: 192.168.1.1
+      nameservers:
+        addresses: [1.1.1.1, 8.8.8.8]
+EOF
+
+cat > "$DEVSTATION/configs/fstab.example" << 'EOF'
+# Example /etc/fstab — study the columns, do NOT replace your real /etc/fstab.
+# <device>            <mount point>  <type>  <options>          <dump> <pass>
+UUID=11aa-22bb-33cc   /              ext4    defaults             0      1
+UUID=44dd-55ee-66ff   /boot          ext4    defaults             0      2
+UUID=77gg-88hh-99ii   /home          ext4    defaults,nodev       0      2
+/dev/vg0/data         /opt/webapp    ext4    defaults,noatime     0      2
+/swap.img             none           swap    sw                   0      0
+tmpfs                 /tmp           tmpfs   defaults,nosuid      0      0
+EOF
+
+cat > "$DEVSTATION/configs/resolv.conf" << 'EOF'
+# Example resolv.conf — name resolution settings.
+nameserver 127.0.0.53
+nameserver 1.1.1.1
+search local example.com
+options edns0 trust-ad
+EOF
+
+# ─── SYSTEM (fake account databases — safe to read, NOT your real ones) ──────
+
+cat > "$DEVSTATION/system/passwd" << 'EOF'
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+sshd:x:104:65534::/run/sshd:/usr/sbin/nologin
+postgres:x:111:117:PostgreSQL administrator:/var/lib/postgresql:/bin/bash
+alice:x:1001:1001:Alice Adams,Engineering:/home/alice:/bin/bash
+bob:x:1002:1002:Bob Brown,DevOps:/home/bob:/bin/bash
+carol:x:1003:1003:Carol Clark,Analytics:/home/carol:/bin/bash
+dave:x:1004:1004:Dave Davis,Engineering:/home/dave:/usr/sbin/nologin
+deploy:x:1005:1005:Deploy Service Account:/home/deploy:/bin/bash
+EOF
+
+cat > "$DEVSTATION/system/group" << 'EOF'
+root:x:0:
+sudo:x:27:alice,bob
+www-data:x:33:deploy
+postgres:x:117:
+developers:x:1500:alice,dave,grace
+devops:x:1501:bob,deploy
+analytics:x:1502:carol
+EOF
+
+cat > "$DEVSTATION/system/shadow" << 'EOF'
+# Fake shadow file — passwords are placeholders, not real hashes.
+# Fields: name:password:lastchange:min:max:warn:inactive:expire:
+root:!:19500:0:99999:7:::
+alice:$6$fakeSALT$fakeHASHvalue00000000000000000:19700:0:90:7:::
+bob:$6$fakeSALT$fakeHASHvalue11111111111111111:19710:0:90:7:14::
+carol:$6$fakeSALT$fakeHASHvalue22222222222222222:19650:0:99999:7:::
+dave:!:19400:0:99999:7::19800:
+deploy:*:19500:0:99999:7:::
+EOF
+
+# ─── CAPTURES (saved command output — practice reading/parsing without root) ──
+
+cat > "$DEVSTATION/captures/ps-aux.txt" << 'EOF'
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.1 168100 11800 ?        Ss   07:55   0:02 /sbin/init
+root       412  0.0  0.2  98200 18400 ?        Ss   07:55   0:01 /usr/lib/systemd/systemd-journald
+root       720  0.0  0.1  15600  6100 ?        Ss   07:55   0:00 /usr/sbin/sshd -D
+www-data  1043 12.3  8.7 2048000 712000 ?      Sl   07:55   3:21 /usr/bin/python3 /opt/webapp/app.py
+postgres  1101  0.5  4.2 1240000 345000 ?      Ss   07:55   0:44 postgres: main process
+www-data  1455  0.0  0.3  72400 24800 ?        S    08:01   0:00 nginx: worker process
+bob       2210  0.0  0.1  17200  9400 pts/1    Ss   14:00   0:00 -bash
+bob       2310 95.1  1.2 220000 98000 pts/1    R+   14:05   2:40 python3 train_model.py
+root      2401  0.0  0.0   8400  3200 ?        S    14:10   0:00 [kworker/0:2]
+EOF
+
+cat > "$DEVSTATION/captures/systemctl-units.txt" << 'EOF'
+UNIT                     LOAD   ACTIVE   SUB     DESCRIPTION
+nginx.service            loaded active   running A high performance web server
+ssh.service              loaded active   running OpenBSD Secure Shell server
+postgresql.service       loaded active   running PostgreSQL RDBMS
+webapp.service           loaded failed   failed  Web Application
+cron.service             loaded active   running Regular background program processing
+ufw.service              loaded active   exited  Uncomplicated firewall
+systemd-journald.service loaded active   running Journal Service
+EOF
+
+cat > "$DEVSTATION/captures/ss-tulpn.txt" << 'EOF'
+Netid State  Local Address:Port  Peer Address:Port Process
+tcp   LISTEN 0.0.0.0:22          0.0.0.0:*         users:(("sshd",pid=720,fd=3))
+tcp   LISTEN 127.0.0.1:5432      0.0.0.0:*         users:(("postgres",pid=1101,fd=5))
+tcp   LISTEN 0.0.0.0:80          0.0.0.0:*         users:(("nginx",pid=1455,fd=6))
+tcp   LISTEN 127.0.0.1:8080      0.0.0.0:*         users:(("python3",pid=1043,fd=8))
+tcp   ESTAB  192.168.1.50:22     192.168.1.10:54322 users:(("sshd",pid=1240,fd=4))
+EOF
+
+cat > "$DEVSTATION/captures/ip-addr.txt" << 'EOF'
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 state UNKNOWN group default
+    inet 127.0.0.1/8 scope host lo
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 state UP group default
+    link/ether 52:54:00:a1:b2:c3 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.50/24 brd 192.168.1.255 scope global eth0
+EOF
+
+cat > "$DEVSTATION/captures/lsblk.txt" << 'EOF'
+NAME         MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+sda            8:0    0   50G  0 disk
+├─sda1         8:1    0    1G  0 part /boot
+└─sda2         8:2    0   49G  0 part
+  ├─vg0-root 252:0    0   25G  0 lvm  /
+  └─vg0-data 252:1    0   24G  0 lvm  /opt/webapp
+sdb            8:16   0   20G  0 disk
+└─sdb1         8:17   0   20G  0 part /mnt/backup
+EOF
+
+cat > "$DEVSTATION/captures/df-h.txt" << 'EOF'
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/mapper/vg0-root   25G   11G   13G  46% /
+/dev/sda1             974M  210M  697M  24% /boot
+/dev/mapper/vg0-data   24G   23G  840M  97% /opt/webapp
+/dev/sdb1              20G  2.1G   17G  11% /mnt/backup
+tmpfs                 3.9G     0  3.9G   0% /tmp
 EOF
 
 # ─── SCRIPTS ─────────────────────────────────────────────────────────────────
@@ -440,6 +582,120 @@ This is a study scenario — you cannot actually run systemctl on this service
 unless you install it. Focus on the diagnostic approach, not the fix.
 EOF
 
+cat > "$DEVSTATION/scenarios/02-disk-space/README.md" << 'EOF'
+# Scenario: Disk Full
+
+## Study material
+`captures/df-h.txt` and `logs/app.log` (look for "no space left on device").
+
+## The ticket
+"Uploads are failing with 500 errors. The app log says 'disk quota exceeded'."
+
+## Your task
+1. From `captures/df-h.txt`, which mount point is the problem? How full is it?
+2. Which commands would you run on a real box to find the biggest offenders?
+   (hint: `du`, `sort`, `find` for large/old files)
+3. Name two safe ways to reclaim space and one risky one to avoid.
+
+## You know you understand it when
+You can explain why `df` and `du` can disagree, and what a deleted-but-open file is.
+EOF
+
+cat > "$DEVSTATION/scenarios/04-ssh-locked/README.md" << 'EOF'
+# Scenario: Locked Out Over SSH
+
+## Study material
+`logs/auth.log` — look at the failed/accepted authentication lines.
+
+## The ticket
+"I can't SSH into the server anymore — it just says 'Permission denied (publickey)'."
+
+## Your task
+1. From `auth.log`, separate the legitimate logins from the attack attempts.
+2. List the things you'd check, in order, for a `publickey` rejection
+   (key present? permissions on `~/.ssh`? right user? server config?).
+3. Which file permissions on `~/.ssh` and `authorized_keys` does sshd require?
+
+## You know you understand it when
+You can explain why correct key permissions matter and what `ssh -v` would show you.
+EOF
+
+cat > "$DEVSTATION/scenarios/05-dns-failure/README.md" << 'EOF'
+# Scenario: Name Resolution Broken
+
+## Study material
+`configs/resolv.conf`, `configs/hosts.example`, `configs/netplan.yaml`.
+
+## The ticket
+"The app can reach 8.8.8.8 by IP but every hostname fails with 'Name or service not known'."
+
+## Your task
+1. If ping-by-IP works but ping-by-name fails, what layer is broken?
+2. Which files/commands decide how a name becomes an IP on Ubuntu?
+   (hint: `/etc/hosts`, `/etc/resolv.conf`, `systemd-resolved`, `getent hosts`)
+3. How would you test resolution without changing anything? (hint: `dig`, `nslookup`, `getent`)
+
+## You know you understand it when
+You can describe the order Linux uses to resolve a hostname.
+EOF
+
+cat > "$DEVSTATION/scenarios/06-out-of-memory/README.md" << 'EOF'
+# Scenario: The OOM Killer Struck
+
+## Study material
+`logs/system.log` (search for "Out of memory") and `captures/ps-aux.txt`.
+
+## The ticket
+"The webapp died on its own around 09:31 and systemd restarted it. No deploy happened."
+
+## Your task
+1. In `system.log`, find who killed what and why. What does "score 312" mean?
+2. From `ps-aux.txt`, which process is the memory hog right now?
+3. What's the difference between a process being killed by OOM vs. crashing on its own?
+4. Name two ways to reduce OOM risk (swap, limits, fixing the leak).
+
+## You know you understand it when
+You can read an OOM log line and explain each field.
+EOF
+
+cat > "$DEVSTATION/scenarios/07-fstab-broken/README.md" << 'EOF'
+# Scenario: Bad fstab Won't Boot
+
+## Study material
+`configs/fstab.example` and `captures/lsblk.txt`.
+
+## The ticket
+"After editing /etc/fstab the machine drops to emergency mode on boot."
+
+## Your task
+1. A wrong UUID or a typo'd option in fstab can block boot. Why is the `<pass>` column relevant?
+2. How do you get a shell to fix it when the system won't boot normally?
+   (hint: recovery mode, remount root read-write)
+3. How do you safely test an fstab change *before* rebooting? (hint: `mount -a`)
+
+## You know you understand it when
+You can explain what each of the six fstab columns does.
+EOF
+
+cat > "$DEVSTATION/scenarios/08-root-recovery/README.md" << 'EOF'
+# Scenario: Lost the Root Password
+
+## The ticket
+"Nobody knows the root password and the only sudo user left the company."
+
+## Your task (study the approach — do this on a throwaway VM, never production blind)
+1. What is single-user / recovery mode, and how do you reach it from GRUB?
+2. Why must you remount the root filesystem read-write before `passwd` will work?
+3. What's the difference between recovering a VM (console access) vs. a remote box you
+   can only SSH to?
+
+## You know you understand it when
+You can list the steps to reset a root password from the GRUB menu, in order.
+
+## Safety
+Never practice this on a machine you can't afford to break. Use a disposable VM.
+EOF
+
 # ─── README ──────────────────────────────────────────────────────────────────
 
 cat > "$DEVSTATION/README.md" << 'EOF'
@@ -452,7 +708,9 @@ A simulated developer workstation. Use it to practice commands on real-looking d
 | Directory | Use for |
 |-----------|---------|
 | `logs/` | grep, tail, awk, log analysis, process logs |
-| `configs/` | Reading and editing config files, understanding formats |
+| `configs/` | Config formats: nginx, systemd, netplan, fstab, hosts, resolv.conf |
+| `system/` | Fake `passwd`/`group`/`shadow` — practice reading account databases safely |
+| `captures/` | Saved output of `ps`, `ss`, `ip`, `lsblk`, `df`, `systemctl` — parse without root |
 | `scripts/` | Bash scripting — fix bugs, complete incomplete scripts, study working examples |
 | `data/` | CSV processing with awk, cut, sort, grep |
 | `scenarios/` | Troubleshooting practice — read the README in each scenario |
@@ -462,19 +720,31 @@ A simulated developer workstation. Use it to practice commands on real-looking d
 ```bash
 cd practice/devstation
 
-# Section 01 practice
+# Filesystems / IO (ch2, ch5)
 tail -f logs/app.log
 grep "ERROR" logs/app.log
 grep -c "ERROR\|CRITICAL" logs/app.log
 
-# Section 06 text processing
+# Users & groups (ch9)
+awk -F: '$3 >= 1000 {print $1, $5}' system/passwd
+grep developers system/group
+
+# Processes, services, networking, storage (ch10, ch12, ch13)
+sort -k3 -nr captures/ps-aux.txt | head     # top processes by CPU
+grep LISTEN captures/ss-tulpn.txt           # what's listening
+awk '$5+0 > 90' captures/df-h.txt           # near-full filesystems
+
+# Text processing (ch14)
 awk -F',' '{print $1, $4}' data/users.csv
 grep "401\|403\|500" logs/access.log | wc -l
 
-# Section 07 bash scripting
+# Bash scripting (ch7)
 cat scripts/deploy.sh     # find the 2 bugs
 cat scripts/backup.sh     # complete the TODOs
 bash scripts/monitor.sh   # study a working script
+
+# Troubleshooting (section 03) — work each scenario's README
+ls scenarios/
 ```
 
 ## Reset
