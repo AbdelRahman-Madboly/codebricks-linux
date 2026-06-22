@@ -3,28 +3,63 @@
 ![Status](https://img.shields.io/badge/status-in%20progress-yellow)
 ![Platform](https://img.shields.io/badge/platform-Ubuntu%2024.04-E95420?logo=ubuntu&logoColor=white)
 ![Chapters](https://img.shields.io/badge/chapters-19-blue)
+![Shell](https://img.shields.io/badge/shell-bash-4EAA25?logo=gnubash&logoColor=white)
 
 > Linux is not a tool I look up. It's where I live.
 
-A hands-on Linux learning repository — from CLI basics to real-world troubleshooting. 19 chapters, 3 sections, one local practice environment. Every note, every command, every answer written by hand in the terminal.
+A hands-on Linux learning repository — from CLI basics to real-world troubleshooting. Nineteen
+chapters across three sections, one disposable practice environment, and an interactive
+tutor-driven workflow. Every note, command, and answer is written by hand in the terminal.
 
 ---
 
 ## Table of Contents
 
-- [About](#about)
+- [What this is](#what-this-is)
+- [How to work through it](#how-to-work-through-it)
 - [Curriculum](#curriculum)
-- [Getting Started](#getting-started)
-- [Repo Structure](#repo-structure)
+- [Getting started](#getting-started)
+- [Repo structure](#repo-structure)
 - [Progress](#progress)
 
 ---
 
-## About
+## What this is
 
-A structured Linux learning path built from the ground up — CLI fundamentals, system operations, and real-world troubleshooting. 19 chapters across 3 sections.
+A structured, self-directed path to real Linux fluency — CLI fundamentals, system operations,
+and troubleshooting. It is built to be *worked*, not read.
 
-Each chapter follows the same structure: concepts in `README.md`, questions to answer in `notes.md`, a command reference to fill in yourself in `commands.md`, and hands-on scenarios in `exercises/`. The practice environment (`devstation/`) simulates a real developer workstation with logs, broken scripts, and troubleshooting scenarios.
+Each chapter has the same four parts:
+
+| File | Purpose |
+|------|---------|
+| `README.md` | The lesson — objectives, concepts, and practice |
+| `notes.md` | Questions I answer in my own words (no copy-paste) |
+| `commands.md` | A command reference I fill in as I learn |
+| `exercises/` | Hands-on scenarios |
+
+Chapter 1 is a fully worked lesson and serves as the model. The remaining chapters start as
+**briefs** (objectives + a concept checklist) and are built up interactively as I work through
+them — so the content is genuinely mine, in my own words.
+
+---
+
+## How to work through it
+
+This repo is designed to be studied with an **interactive tutor session**. The session prompt
+lives in [`TUTOR.md`](TUTOR.md).
+
+1. Generate the practice environment once: `bash practice/setup.sh`.
+2. Open a fresh session in this repo and say: **"Read `TUTOR.md` and start my session."**
+3. The tutor reads [`PROGRESS.md`](PROGRESS.md), picks up the current chapter, and teaches it
+   hands-on — either in the **real terminal** (run commands, see output) or **in chat** when a
+   terminal isn't handy.
+4. I answer the chapter's questions in `notes.md` myself, build up `commands.md`, and work the
+   exercises and troubleshooting scenarios.
+5. A chapter is **done** only when I can do it from memory and explain *why* — no notes, no browser.
+
+The lesson format every chapter follows is documented in
+[`docs/lesson-template.md`](docs/lesson-template.md).
 
 ---
 
@@ -46,8 +81,6 @@ Each chapter follows the same structure: concepts in `README.md`, questions to a
 
 > **Milestone `v0.2.0`** — Section 01 complete. The Linux CLI is no longer a mystery.
 
----
-
 ### Section 02 — System Operations
 *Manage a Linux system. Understand what's running and why.*
 
@@ -61,8 +94,6 @@ Each chapter follows the same structure: concepts in `README.md`, questions to a
 | 6 | [06-text-processing](src/02-system-ops/06-text-processing/) | grep, sed, awk, sort/uniq/cut/wc/tr |
 
 > **Milestone `v0.3.0`** — Section 02 complete. Can manage and understand a Linux system end-to-end.
-
----
 
 ### Section 03 — Troubleshooting
 *Something broke. Find it, diagnose it, fix it.*
@@ -79,54 +110,47 @@ Each chapter follows the same structure: concepts in `README.md`, questions to a
 
 ---
 
-## Getting Started
+## Getting started
 
-**Prerequisites:** Ubuntu 24.04 (or any Debian-based system), bash.
+**Prerequisites:** Ubuntu 24.04 (or any Debian-based system) and bash.
 
-**1. Clone the repo**
 ```bash
+# 1. Clone
 git clone https://github.com/AbdelRahman-Madboly/codebricks-linux.git
 cd codebricks-linux
-```
 
-**2. Generate the practice environment**
-```bash
+# 2. Generate the practice environment (gitignored, regenerate anytime)
 bash practice/setup.sh
-```
-This creates `practice/devstation/` locally (gitignored) — a simulated developer workstation with realistic logs, configs, scripts with bugs, and troubleshooting scenarios.
 
-**3. Start the first chapter**
-```
-src/01-foundations/01-terminals-shells/
-├── README.md      ← start here — what this chapter covers
-├── notes.md       ← questions to answer in your own words
-├── commands.md    ← fill this in as you learn each command
-└── exercises/     ← hands-on scenarios
+# 3. Start a session
+#    Open a session in this repo and say: "Read TUTOR.md and start my session."
 ```
 
-**To reset the practice environment at any time:**
-```bash
-bash practice/setup.sh
-```
+The practice environment (`practice/devstation/`) simulates a developer workstation: realistic
+logs, configs, account databases, command captures, buggy scripts, and eight troubleshooting
+scenarios. Re-run `bash practice/setup.sh` anytime to reset it to a clean state.
 
 ---
 
-## Repo Structure
+## Repo structure
 
 ```
 codebricks-linux/
+├── TUTOR.md                   ← session prompt — point a session at this to start learning
+├── README.md
+├── ROADMAP.md                 ← full chapter map with key skills
+├── PROGRESS.md                ← chapter-by-chapter tracking + session log
 ├── src/
 │   ├── 01-foundations/        (8 chapters)
 │   ├── 02-system-ops/         (6 chapters)
 │   └── 03-troubleshooting/    (5 topics)
 ├── docs/
+│   ├── lesson-template.md     ← the shape every chapter lesson follows
 │   ├── cheatsheet.md          ← command reference, grows with each chapter
-│   └── developer-reference.md ← gcc/compilation reference
-├── practice/
-│   ├── setup.sh               ← generates the practice environment
-│   └── devstation/            ← generated locally, not committed
-├── PROGRESS.md                ← chapter-by-chapter tracking
-└── ROADMAP.md                 ← full chapter map with key skills per chapter
+│   └── developer-reference.md ← compilation / toolchain reference
+└── practice/
+    ├── setup.sh               ← generates the practice environment
+    └── devstation/            ← generated locally, not committed
 ```
 
 ---
@@ -135,8 +159,8 @@ codebricks-linux/
 
 | Section | Chapters | Status |
 |---------|----------|--------|
-| 01 — Foundations | 8 | Not started |
+| 01 — Foundations | 8 | In progress |
 | 02 — System Operations | 6 | Not started |
 | 03 — Troubleshooting | 5 | Not started |
 
-Detailed tracking: [PROGRESS.md](PROGRESS.md)
+Detailed tracking: [PROGRESS.md](PROGRESS.md).

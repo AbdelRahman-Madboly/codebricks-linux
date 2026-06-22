@@ -2,6 +2,7 @@
 
 > Done = I can use it in the terminal without opening a browser.
 > Progress tracked honestly in [PROGRESS.md](PROGRESS.md).
+> Work each chapter with the tutor session in [TUTOR.md](TUTOR.md).
 
 ---
 
