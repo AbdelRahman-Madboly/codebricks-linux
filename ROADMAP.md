@@ -52,7 +52,20 @@
 
 ---
 
+## Study & reference docs (alongside the chapters)
+
+Beyond the hands-on chapters, finished course material is written up as study + reference docs:
+
+- [`docs/study/`](docs/README.md) — read-to-study notes, one subfolder per finished course
+  (open-source methods is done; more added as each course is completed).
+- [`docs/reference/`](docs/reference/) — practical lookups: open-source licensing & contribution,
+  starting a project, troubleshooting, developer tools.
+
+---
+
 ## What comes after v1.0.0
 
-- `codebricks-git` — Git + GitHub + CI/CD + Open Source workflow (separate repo)
+- `codebricks-git` — **Git-specific** material only: Git internals, GitHub, branching, CI/CD
+  pipelines (separate repo). Open-source *methods, licensing, and contribution* live **here** in
+  `docs/`, not there.
 - `codebricks-python` — Python OOP and beyond
