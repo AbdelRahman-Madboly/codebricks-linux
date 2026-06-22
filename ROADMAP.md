@@ -1,16 +1,60 @@
 # Roadmap — codebricks-linux
 
-Done = I can do it in the terminal without opening a browser.
-Each topic is tracked honestly in [`_plan/PROGRESS.md`](_plan/PROGRESS.md).
+> Done = I can use it in the terminal without opening a browser.
+> Progress tracked honestly in [PROGRESS.md](PROGRESS.md).
 
-| When   | Topic |
-|--------|-------|
-| Week 1 | filesystem, navigation, basic commands |
-| Week 2 | files, permissions, users and groups |
-| Week 3 | processes, jobs, networking basics |
-| Week 4 | shell scripting — variables, loops, functions |
-| Week 5 | package management, system info |
-| Week 6 | SSH, keys, firewall basics |
-| Week 7 | environment variables, .bashrc, aliases, PATH |
+---
 
-**v1.0.0** ships when Linux feels like home, not a tool I'm borrowing.
+## Section 01 — Foundations
+*Source: boot.dev "Learn Linux" course*
+
+| # | Chapter | Key skills |
+|---|---------|-----------|
+| 1 | `01-terminals-shells` | shell vs terminal, bash, variables, export, history |
+| 2 | `02-filesystems` | navigation, ls/cd, cat/head/tail, cp/mv/rm, find, links |
+| 3 | `03-permissions` | chmod, chown, sudo, octal, umask, setuid |
+| 4 | `04-programs` | PATH, shebang, .bashrc, aliases, source, which |
+| 5 | `05-input-output` | pipes, redirection, exit codes, kill, ps, top |
+| 6 | `06-packages` | apt, dpkg, nvim/vi basics |
+| 7 | `07-bash-scripting` | variables, conditionals, loops, functions, set -e |
+| 8 | `08-ssh-remote` | SSH keys, config, scp, rsync, tmux |
+
+**Milestone: v0.2.0** — Section 01 complete. Linux CLI is not a mystery.
+
+---
+
+## Section 02 — System Operations
+*Source: Linux Foundation courses (Linux for Developers + Linux Tools for Developers) + Packt Advanced M3*
+
+| # | Chapter | Key skills |
+|---|---------|-----------|
+| 1 | `01-users-groups` | useradd/mod/del, /etc/passwd, /etc/shadow, su/sudo |
+| 2 | `02-processes-services` | systemctl, journalctl, ps/top/kill, crontab, at |
+| 3 | `03-system-boot` | GRUB2, boot sequence, systemd targets, recovery boot |
+| 4 | `04-networking` | ip addr/route, ss, ping, /etc/hosts, netplan, ufw |
+| 5 | `05-storage` | fdisk, lsblk, mount, /etc/fstab, LVM, mkfs, df/du |
+| 6 | `06-text-processing` | grep depth, sed, awk, sort/uniq/cut/tee/wc/tr |
+
+**Milestone: v0.3.0** — Section 02 complete. I can manage and understand a Linux system.
+
+---
+
+## Section 03 — Troubleshooting
+*Source: Packt Linux Troubleshooting Course (3-course specialization)*
+
+| # | Chapter | Key skills |
+|---|---------|-----------|
+| 0 | `00-methodology` | log-first, reproduce, isolate, document, escalate |
+| 1 | `01-system-access` | server not reachable, SSH failures, firewall, DNS |
+| 2 | `02-filesystem` | permissions, disk full, LVM, fstab corruption, fsck |
+| 3 | `03-system-admin` | OOM/swap, service down, user problems, system slow |
+| 4 | `04-system-recovery` | root password, single-user mode, VM/physical recovery |
+
+**Milestone: v1.0.0** — All 19 chapters complete. Linux feels like home.
+
+---
+
+## What comes after v1.0.0
+
+- `codebricks-git` — Git + GitHub + CI/CD + Open Source workflow (separate repo)
+- `codebricks-python` — Python OOP and beyond
