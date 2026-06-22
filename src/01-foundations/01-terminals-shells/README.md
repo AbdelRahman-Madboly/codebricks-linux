@@ -1,43 +1,123 @@
 # CH1: Terminals and Shells
 
-## What This Is
-Every developer spends significant time issuing commands directly to their operating system — running scripts, installing packages, managing files, and debugging. The terminal and shell are the two tools that make this possible. Understanding what each one does, and how they work together, is the foundation for everything else in Linux work.
+## Before You Read Anything
 
-## Mental Model
-Think of the terminal as the window and the shell as the brain behind it. The terminal emulator draws text on your screen and captures your keystrokes — the shell is the program that reads those keystrokes, figures out what to do, and prints the result. When you type a command, the terminal hands it to the shell, the shell runs it, and the terminal displays what came back.
+Open your terminal and run this:
 
-## Key Concepts
-
-### Terminal Emulator
-A terminal emulator is a program that mimics what physical terminals used to do: accept keyboard input and display text output. On Ubuntu, common choices include GNOME Terminal (the default), Alacritty, and Ghostty. The terminal itself has no idea what your commands mean — that is not its job.
-
-### Shell
-The shell is the program that actually interprets and executes your commands. On Ubuntu, the default shell is Bash (Bourne Again Shell). The shell operates as a REPL: it Reads your command, Evaluates it by running another program or built-in, Prints the output, and Loops back waiting for the next input.
-
-### Shell Variables
-Bash lets you define variables to store values temporarily in your current session. You assign with `name="value"` — no spaces around the `=` — and access the value by prefixing the name with `$`. Variables are local to the current shell session and disappear when you close the terminal.
-
-### Command History
-Your shell keeps a running log of every command you type. The `history` command prints the full list with line numbers. You can cycle through previous commands with the up and down arrow keys without retyping. `clear` (or `ctrl+l`) wipes the visible screen without touching the history.
-
-## Developer Connection
-1. When you run `python main.py`, you are invoking the Python interpreter through the shell — the terminal just displays what comes back.
-2. Shell variables are the simplest form of runtime configuration: set `API_KEY="..."` in your session and any script you run can read it from the environment.
-3. The `history` command lets you recover a long pipeline or command sequence you ran during debugging without retyping it from memory.
-4. Ghostty and Alacritty are popular terminal emulators among developers who want speed and configurability — relevant when setting up a fresh Ubuntu dev machine.
-5. The REPL model is the same pattern as Python's interactive interpreter, Jupyter notebooks, and `node` — once you understand it in one context, it transfers everywhere.
-
-## Try It Now
 ```bash
-echo "Hello world"
-# Hello world
-
-whoami
-# your-username
-
-expr 100 + 42
-# 142
+echo $SHELL
 ```
 
+Keep what you see in mind. By the end of this chapter you'll know exactly what that means and why it matters.
+
+---
+
+## The Big Picture
+
+Every developer spends significant time issuing commands directly to the operating system — running scripts, installing packages, managing files, debugging. The terminal and the shell are the two tools that make this possible. They look like one thing but they are two separate programs working together.
+
+---
+
+## Terminal vs Shell
+
+Run this:
+
+```bash
+whoami
+```
+
+Something read what you typed, figured out what it meant, ran a program, and printed the result. That something is the **shell**.
+
+The **terminal** is just the window — it draws text on screen and sends your keystrokes somewhere. It has no idea what your commands mean.
+
+The **shell** is the program behind it. On Ubuntu your shell is almost certainly Bash. Bash read `whoami`, evaluated it, printed your username, and is now waiting for your next command.
+
+One more to make it concrete:
+
+```bash
+expr 99 + 1
+```
+
+The terminal showed you `100`. Bash did the math.
+
+---
+
+## The Shell is a REPL
+
+You will hear this word constantly. REPL stands for:
+
+- **R**ead — Bash read what you typed
+- **E**val — Bash ran it (launched a program, did a calculation, whatever)
+- **P**rint — Bash printed the result
+- **L**oop — Bash is now waiting for the next command
+
+Every command you type is one full REPL cycle. You have been using a REPL this whole time without knowing it. Python's interactive mode, Jupyter notebooks, and `node` all work the same way.
+
+---
+
+## Variables
+
+Variables let you store a value and reuse it. Try this — no spaces around the `=`:
+
+```bash
+name="yourname"
+echo $name
+```
+
+Now try it with spaces and see what happens:
+
+```bash
+name = "yourname"
+```
+
+Bash treats `name` as a command to run. No command called `name` exists, so it crashes. The rule: **no spaces around `=`** in variable assignment.
+
+Now try string interpolation — putting a variable inside a sentence:
+
+```bash
+project="linux"
+version="1.0"
+echo "$project version $version is running"
+```
+
+Always use double quotes around strings that contain variables. Single quotes will print the literal `$variable` text instead of the value.
+
+---
+
+## History
+
+Your shell logs every command you type. Run:
+
+```bash
+history
+```
+
+You can see everything from this session with line numbers. Use the **up and down arrows** to cycle through previous commands without retyping them.
+
+To clear the screen without losing history:
+
+```bash
+clear
+```
+
+Run `history` again after — it is all still there.
+
+To wipe the history entirely:
+
+```bash
+history -c
+```
+
+---
+
+## Three Rules to Remember
+
+1. Terminal = window. Shell = the program that runs your commands. They are not the same.
+2. Never put spaces around `=` when assigning a variable.
+3. `clear` clears the screen. `history -c` clears the history. They are different.
+
+---
+
 ## What's Next
-Chapter 2 covers the filesystem — how directories and files are structured and how to navigate them from the command line.
+
+Chapter 2 covers the filesystem — how everything on your machine is organized into a tree, and how to navigate, read, create, move, and delete files from the command line.
