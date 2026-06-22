@@ -22,11 +22,7 @@ A hands-on Linux learning repository — from CLI basics to real-world troublesh
 
 ## About
 
-This repo documents a complete Linux learning path built from three course sources:
-
-- **boot.dev** — Learn Linux (CLI fundamentals)
-- **Linux Foundation** — Linux for Developers + Linux Tools for Developers (system management)
-- **Packt** — Linux Troubleshooting Course with Real Life Examples (diagnosis + recovery)
+A structured Linux learning path built from the ground up — CLI fundamentals, system operations, and real-world troubleshooting. 19 chapters across 3 sections.
 
 Each chapter follows the same structure: concepts in `README.md`, questions to answer in `notes.md`, a command reference to fill in yourself in `commands.md`, and hands-on scenarios in `exercises/`. The practice environment (`devstation/`) simulates a real developer workstation with logs, broken scripts, and troubleshooting scenarios.
 

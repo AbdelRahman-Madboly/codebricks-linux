@@ -1,6 +1,5 @@
 # 03 — System Boot
 
-**Source:** Linux for Developers M3  
 **Status:** Not started  
 **Section:** 02-system-ops
 

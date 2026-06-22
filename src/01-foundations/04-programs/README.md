@@ -1,6 +1,5 @@
 # 04 — Programs
 
-**Source:** boot.dev "Learn Linux" CH4 + Linux for Developers M2  
 **Status:** Not started  
 **Section:** 01-foundations
 

@@ -1,6 +1,5 @@
 # 01 — Users & Groups
 
-**Source:** Linux for Developers M5 + Packt Advanced M3 + Packt Advanced M1  
 **Status:** Not started  
 **Section:** 02-system-ops
 

@@ -1,6 +1,5 @@
 # 02 — Processes & Services
 
-**Source:** Linux for Developers M4 + Packt Advanced M3  
 **Status:** Not started  
 **Section:** 02-system-ops
 

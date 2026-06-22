@@ -1,6 +1,5 @@
 # 05 — Input/Output
 
-**Source:** boot.dev "Learn Linux" CH5 + Linux for Developers M4  
 **Status:** Not started  
 **Section:** 01-foundations
 

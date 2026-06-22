@@ -1,6 +1,5 @@
 # 08 — SSH & Remote
 
-**Source:** boot.dev "Learn Linux" CH8 + Packt Advanced M3  
 **Status:** Not started  
 **Section:** 01-foundations
 

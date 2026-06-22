@@ -1,6 +1,5 @@
 # 06 — Packages
 
-**Source:** boot.dev "Learn Linux" CH6 + Linux for Developers M5  
 **Status:** Not started  
 **Section:** 01-foundations
 

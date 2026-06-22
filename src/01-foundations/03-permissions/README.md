@@ -1,6 +1,5 @@
 # 03 — Permissions
 
-**Source:** boot.dev "Learn Linux" CH3 + Linux Tools for Developers M2  
 **Status:** Not started  
 **Section:** 01-foundations
 

@@ -1,6 +1,5 @@
 # 01 — System Access
 
-**Source:** Packt Intermediate M1 (Ubuntu translation)  
 **Status:** Not started  
 **Section:** 03-troubleshooting
 

@@ -6,7 +6,6 @@
 ---
 
 ## Section 01 — Foundations
-*Source: boot.dev "Learn Linux" course*
 
 | # | Chapter | Key skills |
 |---|---------|-----------|
@@ -24,7 +23,6 @@
 ---
 
 ## Section 02 — System Operations
-*Source: Linux Foundation courses (Linux for Developers + Linux Tools for Developers) + Packt Advanced M3*
 
 | # | Chapter | Key skills |
 |---|---------|-----------|
@@ -40,7 +38,6 @@
 ---
 
 ## Section 03 — Troubleshooting
-*Source: Packt Linux Troubleshooting Course (3-course specialization)*
 
 | # | Chapter | Key skills |
 |---|---------|-----------|

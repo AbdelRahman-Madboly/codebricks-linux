@@ -1,6 +1,5 @@
 # 07 — Bash Scripting
 
-**Source:** boot.dev "Learn Linux" CH7 + Packt Advanced M3  
 **Status:** Not started  
 **Section:** 01-foundations
 

@@ -1,6 +1,5 @@
 # 05 — Storage
 
-**Source:** Linux for Developers M2 + Linux Tools for Developers M2 + Packt Intermediate M2  
 **Status:** Not started  
 **Section:** 02-system-ops
 

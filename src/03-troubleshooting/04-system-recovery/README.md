@@ -1,6 +1,5 @@
 # 04 — System Recovery
 
-**Source:** Packt Advanced M1 + M2  
 **Status:** Not started  
 **Section:** 03-troubleshooting
 

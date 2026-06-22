@@ -1,6 +1,5 @@
 # 00 — Methodology
 
-**Source:** Packt Fundamentals M2 + M4  
 **Status:** Not started  
 **Section:** 03-troubleshooting
 

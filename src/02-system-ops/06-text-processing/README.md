@@ -1,6 +1,5 @@
 # 06 — Text Processing
 
-**Source:** Linux Tools for Developers M1 + Packt Advanced M3  
 **Status:** Not started  
 **Section:** 02-system-ops
 

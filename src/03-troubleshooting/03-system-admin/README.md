@@ -1,6 +1,5 @@
 # 03 — System Administration
 
-**Source:** Packt Advanced M1 (Ubuntu translation)  
 **Status:** Not started  
 **Section:** 03-troubleshooting
 

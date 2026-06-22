@@ -1,6 +1,5 @@
 # 04 — Networking
 
-**Source:** Linux for Developers M3 + Packt Intermediate M1  
 **Status:** Not started  
 **Section:** 02-system-ops
 

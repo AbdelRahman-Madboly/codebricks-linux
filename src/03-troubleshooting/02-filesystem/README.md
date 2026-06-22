@@ -1,6 +1,5 @@
 # 02 — Filesystem
 
-**Source:** Packt Intermediate M2 (Ubuntu translation)  
 **Status:** Not started  
 **Section:** 03-troubleshooting
 
