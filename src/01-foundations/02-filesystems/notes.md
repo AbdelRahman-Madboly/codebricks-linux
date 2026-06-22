@@ -32,4 +32,4 @@
 > Write your own real use cases here — leave blank now.
 
 ## Connections to My Work
-> How does this connect to your AI engineering work? — leave blank now.
+> How does this connect to your day-to-day engineering work? — leave blank now.
