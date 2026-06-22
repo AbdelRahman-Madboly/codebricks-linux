@@ -1,20 +1,29 @@
-# 03 — System Boot
+# CH11: System Boot
 
-**Status:** Not started  
-**Section:** 02-system-ops
+**Status:** Not started
 
----
-
-## What this chapter covers
-
-What happens from power-on to login prompt. BIOS/UEFI → GRUB2 → kernel → initramfs → systemd. GRUB2 configuration files and how to update them. systemd as PID 1. Targets (replacing runlevels). Reading kernel messages with `dmesg`. Booting into recovery mode to fix a broken system.
+> This chapter is a brief, not a finished lesson. You build the lesson live with your
+> tutor (see [`TUTOR.md`](../../../TUTOR.md)), then fill in your own notes.
 
 ---
+
+## Objectives
+By the end of this chapter I can:
+- [ ] Describe the boot sequence end to end
+- [ ] Understand GRUB2 and how to edit boot entries
+- [ ] Work with systemd targets
+- [ ] Boot into recovery mode when something is broken
+
+## How to start this chapter
+
+Open a session and say *"Read `TUTOR.md` and start my session."* Your tutor will work
+through the objectives above with you, and together you fill in the lesson here.
 
 ## Files in this chapter
 
-| File | Contents |
-|------|----------|
-| `notes.md` | Questions to answer in your own words |
-| `commands.md` | Command reference — fill this in yourself |
-| `exercises/` | Practice scenarios |
+| File | Who fills it | Contents |
+|------|-------------|----------|
+| `README.md` | tutor + me | the lesson, built during the session |
+| `notes.md` | me | answers in my own words |
+| `commands.md` | me | commands first seen in this chapter |
+| `exercises/` | tutor + me | hands-on scenarios |

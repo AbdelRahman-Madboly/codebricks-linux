@@ -1,30 +1,28 @@
-# 04 — System Recovery
+# CH19: System Recovery
 
-**Status:** Not started  
-**Section:** 03-troubleshooting
+**Status:** Not started
 
----
-
-## What this chapter covers
-
-When the normal tools don't work because the system won't boot, you're locked out, or something is seriously broken. Recovering a forgotten root password. Getting into single-user mode (Ubuntu). Recovering a VM from snapshot or live ISO with `chroot`. Physical system recovery. Disaster recovery mindset: what to back up, where, how often, and how to test.
+> This chapter is a brief, not a finished lesson. You build the lesson live with your
+> tutor (see [`TUTOR.md`](../../../TUTOR.md)), then fill in your own notes.
 
 ---
 
-## Scenarios covered
+## Objectives
+By the end of this chapter I can:
+- [ ] Reset a lost root password
+- [ ] Boot into single-user mode
+- [ ] Recover a VM or physical machine that won't boot normally
 
-1. Forgot root password — GRUB boot edit → `passwd root`
-2. Ubuntu single-user / recovery mode
-3. VM recovery: snapshot rollback vs live ISO chroot
-4. Physical system: live USB → mount → chroot → fix bootloader or fstab
-5. Disaster recovery strategy: what to back up, RPO/RTO concepts
+## How to start this chapter
 
----
+Open a session and say *"Read `TUTOR.md` and start my session."* Your tutor will work
+through the objectives above with you, and together you fill in the lesson here.
 
 ## Files in this chapter
 
-| File | Contents |
-|------|----------|
-| `notes.md` | Questions to answer in your own words |
-| `commands.md` | Command reference — fill this in yourself |
-| `exercises/` | Guided recovery scenarios |
+| File | Who fills it | Contents |
+|------|-------------|----------|
+| `README.md` | tutor + me | the lesson, built during the session |
+| `notes.md` | me | answers in my own words |
+| `commands.md` | me | commands first seen in this chapter |
+| `exercises/` | tutor + me | hands-on scenarios |

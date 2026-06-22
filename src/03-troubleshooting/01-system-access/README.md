@@ -1,30 +1,28 @@
-# 01 — System Access
+# CH16: System Access Failures
 
-**Status:** Not started  
-**Section:** 03-troubleshooting
+**Status:** Not started
 
----
-
-## What this chapter covers
-
-Diagnosing and fixing connectivity problems. Server not reachable — walking the full network stack from ping to physical. Cannot connect to a web application. SSH access denied (root, user, key, firewall). Each scenario starts with the symptom — you determine the diagnosis and fix.
+> This chapter is a brief, not a finished lesson. You build the lesson live with your
+> tutor (see [`TUTOR.md`](../../../TUTOR.md)), then fill in your own notes.
 
 ---
 
-## Scenarios covered
+## Objectives
+By the end of this chapter I can:
+- [ ] Diagnose a server that won't respond
+- [ ] Debug SSH connection failures
+- [ ] Track down firewall and DNS problems
 
-1. Server not reachable (full ping → DNS → route → firewall → service flow)
-2. Cannot connect to website / application
-3. Cannot SSH as root
-4. Cannot SSH as user (key permissions, authorized_keys)
-5. Firewall blocking connections
+## How to start this chapter
 
----
+Open a session and say *"Read `TUTOR.md` and start my session."* Your tutor will work
+through the objectives above with you, and together you fill in the lesson here.
 
 ## Files in this chapter
 
-| File | Contents |
-|------|----------|
-| `notes.md` | Questions to answer in your own words |
-| `commands.md` | Command reference — fill this in yourself |
-| `exercises/` | Scenario descriptions — diagnose without being told the answer |
+| File | Who fills it | Contents |
+|------|-------------|----------|
+| `README.md` | tutor + me | the lesson, built during the session |
+| `notes.md` | me | answers in my own words |
+| `commands.md` | me | commands first seen in this chapter |
+| `exercises/` | tutor + me | hands-on scenarios |

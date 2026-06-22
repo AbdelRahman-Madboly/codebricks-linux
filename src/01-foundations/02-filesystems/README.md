@@ -1,6 +1,14 @@
 # CH2: Filesystems
 
-## Before You Read Anything
+## Objectives
+By the end of this chapter I can:
+- Navigate the filesystem tree with `pwd`, `ls`, and `cd`.
+- Tell absolute and relative paths apart and choose the right one.
+- Read files with `cat`, `head`, `tail`, and `less`.
+- Create, move, copy, and delete files and directories safely.
+- Search file contents with `grep` and find files by name with `find`.
+
+## Before You Start
 
 Run this:
 
@@ -183,11 +191,40 @@ find /var/log -name "*error*"     # find files with "error" in the name
 
 ---
 
-## Three Rules to Remember
+## Practice Now
 
-1. `/` is the root of everything. Your home is `~`. Know where you are with `pwd`.
-2. `rm -r` is permanent — no undo, no trash. Always double-check before running it.
-3. `grep` searches inside files. `find` searches for files by name.
+Do this whole sequence in a scratch directory (predict each result before running):
+
+```bash
+cd ~ && mkdir -p scratch/logs && cd scratch
+touch logs/app.log notes.txt
+ls -R
+cp notes.txt logs/notes-backup.txt
+mv notes.txt readme.txt
+find . -name "*.txt"
+grep -r "app" logs/      # returns nothing yet — why?
+rm -r logs
+ls
+```
+
+When you're done: `cd ~ && rm -r scratch` to clean up.
+
+---
+
+## Check Yourself
+Answer these out loud before moving on:
+1. You're deep in `/var/log/nginx/`. Two ways to get home — what are they?
+2. When would an absolute path save a script that a relative path would break?
+3. What's the difference between `rm -r` and `cp -R`, and why does one use `-r` and the other `-R`?
+4. You want every line containing "timeout" across all files in `logs/` — `grep` or `find`?
+
+---
+
+## Common Mistakes
+- Running `rm -r` without checking *where you are* first — there is no trash can, no undo.
+- Reaching for `grep` when you wanted `find` (or vice versa): `grep` looks *inside* files,
+  `find` looks *for* files.
+- Forgetting that `~` and `/` are different starting points.
 
 ---
 

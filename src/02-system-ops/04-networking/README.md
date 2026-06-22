@@ -1,20 +1,29 @@
-# 04 — Networking
+# CH12: Networking
 
-**Status:** Not started  
-**Section:** 02-system-ops
+**Status:** Not started
 
----
-
-## What this chapter covers
-
-Viewing and configuring network interfaces with `ip`. Checking and modifying routing tables. Seeing what's listening on which ports with `ss`. Testing connectivity with `ping`, `traceroute`, `mtr`. DNS: `dig`, `nslookup`, `/etc/resolv.conf`, `/etc/hosts`. Configuring networks with Netplan (Ubuntu). Firewall management with `ufw`.
+> This chapter is a brief, not a finished lesson. You build the lesson live with your
+> tutor (see [`TUTOR.md`](../../../TUTOR.md)), then fill in your own notes.
 
 ---
+
+## Objectives
+By the end of this chapter I can:
+- [ ] Inspect addresses and routes with `ip addr`/`ip route`
+- [ ] See open sockets with `ss` and test reachability with `ping`
+- [ ] Configure name resolution via `/etc/hosts` and interfaces via `netplan`
+- [ ] Manage a firewall with `ufw`
+
+## How to start this chapter
+
+Open a session and say *"Read `TUTOR.md` and start my session."* Your tutor will work
+through the objectives above with you, and together you fill in the lesson here.
 
 ## Files in this chapter
 
-| File | Contents |
-|------|----------|
-| `notes.md` | Questions to answer in your own words |
-| `commands.md` | Command reference — fill this in yourself |
-| `exercises/` | Practice scenarios |
+| File | Who fills it | Contents |
+|------|-------------|----------|
+| `README.md` | tutor + me | the lesson, built during the session |
+| `notes.md` | me | answers in my own words |
+| `commands.md` | me | commands first seen in this chapter |
+| `exercises/` | tutor + me | hands-on scenarios |

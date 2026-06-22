@@ -1,33 +1,29 @@
-# 02 — Filesystem
+# CH17: Filesystem Problems
 
-**Status:** Not started  
-**Section:** 03-troubleshooting
+**Status:** Not started
 
----
-
-## What this chapter covers
-
-File and directory access problems. Disk full emergencies. LVM extension under pressure. Filesystem corruption recovery. Broken `/etc/fstab` (system won't boot). Each scenario gives you the symptom — you work out the cause and fix.
+> This chapter is a brief, not a finished lesson. You build the lesson live with your
+> tutor (see [`TUTOR.md`](../../../TUTOR.md)), then fill in your own notes.
 
 ---
 
-## Scenarios covered
+## Objectives
+By the end of this chapter I can:
+- [ ] Fix permission and ownership issues
+- [ ] Recover from a full disk
+- [ ] Repair LVM and a corrupted `/etc/fstab`
+- [ ] Run `fsck` safely
 
-1. Cannot `cd` into a directory (permissions)
-2. Cannot execute a script (missing `+x`, bad shebang, Windows line endings)
-3. Cannot find a file (using `find`, `locate`, hidden files)
-4. Cannot create a hard link across filesystems
-5. Disk full — identify and clean up
-6. LVM — extend a logical volume online
-7. Filesystem corruption — `fsck` in recovery mode
-8. `/etc/fstab` error — system stuck at boot
+## How to start this chapter
 
----
+Open a session and say *"Read `TUTOR.md` and start my session."* Your tutor will work
+through the objectives above with you, and together you fill in the lesson here.
 
 ## Files in this chapter
 
-| File | Contents |
-|------|----------|
-| `notes.md` | Questions to answer in your own words |
-| `commands.md` | Command reference — fill this in yourself |
-| `exercises/` | Scenario descriptions |
+| File | Who fills it | Contents |
+|------|-------------|----------|
+| `README.md` | tutor + me | the lesson, built during the session |
+| `notes.md` | me | answers in my own words |
+| `commands.md` | me | commands first seen in this chapter |
+| `exercises/` | tutor + me | hands-on scenarios |

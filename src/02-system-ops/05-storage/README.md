@@ -1,20 +1,29 @@
-# 05 — Storage
+# CH13: Storage
 
-**Status:** Not started  
-**Section:** 02-system-ops
+**Status:** Not started
 
----
-
-## What this chapter covers
-
-How disks, partitions, and filesystems are layered in Linux. Checking disk space and usage. Partitioning with `fdisk`. Formatting with `mkfs`. Mounting and the `/etc/fstab` file for persistent mounts. LVM: physical volumes → volume groups → logical volumes, and how to extend them online. Filesystem checks with `fsck`. RAID overview (conceptual).
+> This chapter is a brief, not a finished lesson. You build the lesson live with your
+> tutor (see [`TUTOR.md`](../../../TUTOR.md)), then fill in your own notes.
 
 ---
+
+## Objectives
+By the end of this chapter I can:
+- [ ] Inspect disks and partitions with `lsblk` and `fdisk`
+- [ ] Mount filesystems and persist them in `/etc/fstab`
+- [ ] Understand LVM and create filesystems with `mkfs`
+- [ ] Check usage with `df` and `du`
+
+## How to start this chapter
+
+Open a session and say *"Read `TUTOR.md` and start my session."* Your tutor will work
+through the objectives above with you, and together you fill in the lesson here.
 
 ## Files in this chapter
 
-| File | Contents |
-|------|----------|
-| `notes.md` | Questions to answer in your own words |
-| `commands.md` | Command reference — fill this in yourself |
-| `exercises/` | Practice scenarios — disk full and LVM scenarios |
+| File | Who fills it | Contents |
+|------|-------------|----------|
+| `README.md` | tutor + me | the lesson, built during the session |
+| `notes.md` | me | answers in my own words |
+| `commands.md` | me | commands first seen in this chapter |
+| `exercises/` | tutor + me | hands-on scenarios |

@@ -1,20 +1,30 @@
-# 03 — Permissions
+# CH3: Permissions
 
-**Status:** Not started  
-**Section:** 01-foundations
+**Status:** Not started
 
----
-
-## What this chapter covers
-
-Every file has an owner, a group, and three permission sets (user/group/other). Reading `ls -l` output. `chmod` in both octal and symbolic form. `chown` and `chgrp`. When and why to use `sudo`. Special permissions: `umask`, `setuid`, `setgid`, sticky bit.
+> This chapter is a brief, not a finished lesson. You build the lesson live with your
+> tutor (see [`TUTOR.md`](../../../TUTOR.md)), then fill in your own notes.
 
 ---
+
+## Objectives
+By the end of this chapter I can:
+- [ ] Read and decode `ls -l` output (owner, group, the three permission sets)
+- [ ] Change permissions with `chmod` in both octal and symbolic form
+- [ ] Change ownership with `chown` and `chgrp`
+- [ ] Explain when and why to use `sudo`
+- [ ] Understand special bits: `umask`, setuid, setgid, sticky bit
+
+## How to start this chapter
+
+Open a session and say *"Read `TUTOR.md` and start my session."* Your tutor will work
+through the objectives above with you, and together you fill in the lesson here.
 
 ## Files in this chapter
 
-| File | Contents |
-|------|----------|
-| `notes.md` | Questions to answer in your own words |
-| `commands.md` | Command reference — fill this in yourself |
-| `exercises/` | Practice scenarios — see `practice/devstation/scenarios/01-permission-denied/` |
+| File | Who fills it | Contents |
+|------|-------------|----------|
+| `README.md` | tutor + me | the lesson, built during the session |
+| `notes.md` | me | answers in my own words |
+| `commands.md` | me | commands first seen in this chapter |
+| `exercises/` | tutor + me | hands-on scenarios |

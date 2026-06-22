@@ -1,20 +1,29 @@
-# 08 — SSH & Remote
+# CH8: SSH and Remote Work
 
-**Status:** Not started  
-**Section:** 01-foundations
+**Status:** Not started
 
----
-
-## What this chapter covers
-
-Connecting to remote machines with SSH. Generating and managing SSH keys. Installing your public key on a server. The `~/.ssh/config` file for managing multiple hosts. Copying files with `scp` and `rsync`. Keeping sessions alive with `tmux`. Port forwarding for tunneling services.
+> This chapter is a brief, not a finished lesson. You build the lesson live with your
+> tutor (see [`TUTOR.md`](../../../TUTOR.md)), then fill in your own notes.
 
 ---
+
+## Objectives
+By the end of this chapter I can:
+- [ ] Generate and use SSH keys
+- [ ] Simplify connections with an SSH config file
+- [ ] Move files with `scp` and `rsync`
+- [ ] Keep remote sessions alive with `tmux`
+
+## How to start this chapter
+
+Open a session and say *"Read `TUTOR.md` and start my session."* Your tutor will work
+through the objectives above with you, and together you fill in the lesson here.
 
 ## Files in this chapter
 
-| File | Contents |
-|------|----------|
-| `notes.md` | Questions to answer in your own words |
-| `commands.md` | Command reference — fill this in yourself |
-| `exercises/` | Practice scenarios |
+| File | Who fills it | Contents |
+|------|-------------|----------|
+| `README.md` | tutor + me | the lesson, built during the session |
+| `notes.md` | me | answers in my own words |
+| `commands.md` | me | commands first seen in this chapter |
+| `exercises/` | tutor + me | hands-on scenarios |

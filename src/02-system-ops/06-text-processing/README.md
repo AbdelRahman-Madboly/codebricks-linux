@@ -1,20 +1,28 @@
-# 06 — Text Processing
+# CH14: Text Processing
 
-**Status:** Not started  
-**Section:** 02-system-ops
+**Status:** Not started
 
----
-
-## What this chapter covers
-
-Processing text at the command line — an essential skill for log analysis, config editing, and data wrangling. `grep` in depth. Extended regex. `sed` for substitution and in-place editing. `awk` for field extraction and pattern-action rules. Combining tools with pipes: `sort`, `uniq`, `cut`, `tr`, `wc`, `tee`, `paste`. Using `find | xargs` for bulk operations.
+> This chapter is a brief, not a finished lesson. You build the lesson live with your
+> tutor (see [`TUTOR.md`](../../../TUTOR.md)), then fill in your own notes.
 
 ---
+
+## Objectives
+By the end of this chapter I can:
+- [ ] Search with `grep` (and its useful flags)
+- [ ] Transform streams with `sed` and `awk`
+- [ ] Combine `sort`, `uniq`, `cut`, `wc`, and `tr` into pipelines
+
+## How to start this chapter
+
+Open a session and say *"Read `TUTOR.md` and start my session."* Your tutor will work
+through the objectives above with you, and together you fill in the lesson here.
 
 ## Files in this chapter
 
-| File | Contents |
-|------|----------|
-| `notes.md` | Questions to answer in your own words |
-| `commands.md` | Command reference — fill this in yourself |
-| `exercises/` | Practice scenarios — use `practice/devstation/data/` and `logs/` |
+| File | Who fills it | Contents |
+|------|-------------|----------|
+| `README.md` | tutor + me | the lesson, built during the session |
+| `notes.md` | me | answers in my own words |
+| `commands.md` | me | commands first seen in this chapter |
+| `exercises/` | tutor + me | hands-on scenarios |
